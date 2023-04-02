@@ -1,16 +1,13 @@
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-
-const basicTheme = createTheme({
-    palette: {
-        mode: 'dark',
-    },
-});
+import { CssBaseline, ThemeProvider, Typography } from '@mui/material';
+import { lightTheme, darkTheme } from './themes';
 
 function App() {
     return (
-        <ThemeProvider theme={basicTheme}>
+        <ThemeProvider theme={darkTheme}>
             <CssBaseline />
-            <div>Hello World</div>
+            <Typography variant="h1" color="primary">
+                Hello World
+            </Typography>
         </ThemeProvider>
     );
 }
