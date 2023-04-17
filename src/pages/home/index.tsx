@@ -17,7 +17,7 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <Card sx={{ height: 'calc(100vh - 100px)' }}>
-                        <CardHeader title="Completed" />
+                        <CardHeader title="Finished" />
                     </Card>
                 </Grid>
             </Grid>

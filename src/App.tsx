@@ -4,17 +4,20 @@ import Navbar from './layout/navbar';
 import Sidebar from './layout/sidebar';
 import { UIProvider } from './context/ui/UIProvider';
 import Home from './pages/home';
+import { EntriesProvider } from './context/entries/EntriesProvider';
 
 function App() {
     return (
-        <UIProvider>
-            <ThemeProvider theme={darkTheme}>
-                <CssBaseline />
-                <Navbar />
-                <Sidebar />
-                <Home />
-            </ThemeProvider>
-        </UIProvider>
+        <EntriesProvider>
+            <UIProvider>
+                <ThemeProvider theme={darkTheme}>
+                    <CssBaseline />
+                    <Navbar />
+                    <Sidebar />
+                    <Home />
+                </ThemeProvider>
+            </UIProvider>
+        </EntriesProvider>
     );
 }
 
