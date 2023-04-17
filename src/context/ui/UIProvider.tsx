@@ -3,7 +3,7 @@ import { UIContext } from './UIContext';
 import { uiReducer } from './uiReducer';
 
 interface UIProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export interface UIState {
