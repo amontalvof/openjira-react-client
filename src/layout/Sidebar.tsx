@@ -13,7 +13,7 @@ import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import { UIContext } from '../../context/ui/UIContext';
+import { UIContext } from '../context/ui/UIContext';
 import { useContext } from 'react';
 
 const menuItems = ['Work Items', 'Boards', 'Backlogs', 'Sprints', 'Queries'];

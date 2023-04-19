@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { lightTheme, darkTheme } from './themes';
-import Navbar from './layout/navbar';
-import Sidebar from './layout/sidebar';
+import Navbar from './layout/Navbar';
+import Sidebar from './layout/Sidebar';
 import { UIProvider } from './context/ui/UIProvider';
-import Home from './pages/home';
+import Home from './pages/Home';
 import { EntriesProvider } from './context/entries/EntriesProvider';
 
 function App() {

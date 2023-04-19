@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, Grid } from '@mui/material';
+import EntryList from '../components/EntryList';
 
 const Home = () => {
     return (
@@ -7,17 +8,19 @@ const Home = () => {
                 <Grid item xs={12} sm={4}>
                     <Card sx={{ height: 'calc(100vh - 100px)' }}>
                         <CardHeader title="Pending" />
-                        <CardContent></CardContent>
+                        <EntryList />
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <Card sx={{ height: 'calc(100vh - 100px)' }}>
                         <CardHeader title="In Progress" />
+                        <EntryList />
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <Card sx={{ height: 'calc(100vh - 100px)' }}>
                         <CardHeader title="Finished" />
+                        <EntryList />
                     </Card>
                 </Grid>
             </Grid>
