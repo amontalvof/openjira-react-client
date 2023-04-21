@@ -1,36 +1,74 @@
+import { ChangeEvent, useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 const NewEntry = () => {
+    const [isAdding, setIsAdding] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [touched, setTouched] = useState(false);
+
+    const onTextFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value);
+        setTouched(true);
+    };
+
+    const handleCancel = () => {
+        setIsAdding(false);
+        setInputValue('');
+        setTouched(false);
+    };
+
+    const onSave = () => {
+        if (inputValue.length <= 0) return;
+        console.log(inputValue);
+    };
+
     return (
         <Box sx={{ marginBottom: 2, paddingX: 2 }}>
-            <Button
-                startIcon={<AddCircleOutlineOutlinedIcon />}
-                fullWidth
-                variant="outlined"
-            >
-                Add Task
-            </Button>
-            <TextField
-                fullWidth
-                sx={{ marginTop: 2, marginBottom: 1 }}
-                // placeholder="New Entry"
-                autoFocus
-                multiline
-                label="New Entry"
-                helperText="Press Enter a value to save"
-            />
-            <Box display="flex" justifyContent="space-between">
-                <Button variant="text">Cancel</Button>
+            {isAdding ? (
+                <>
+                    <TextField
+                        fullWidth
+                        sx={{ marginTop: 2, marginBottom: 1 }}
+                        // placeholder="New Entry"
+                        autoFocus
+                        multiline
+                        error={inputValue.length <= 0 && touched}
+                        label="New Entry"
+                        helperText={
+                            inputValue.length <= 0 &&
+                            touched &&
+                            'Please enter a value'
+                        }
+                        value={inputValue}
+                        onChange={onTextFieldChange}
+                        onBlur={() => setTouched(true)}
+                    />
+                    <Box display="flex" justifyContent="space-between">
+                        <Button variant="text" onClick={handleCancel}>
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="secondary"
+                            endIcon={<SaveOutlinedIcon />}
+                            onClick={onSave}
+                        >
+                            Save
+                        </Button>
+                    </Box>
+                </>
+            ) : (
                 <Button
+                    startIcon={<AddCircleOutlineOutlinedIcon />}
+                    fullWidth
                     variant="outlined"
-                    color="secondary"
-                    endIcon={<SaveOutlinedIcon />}
+                    onClick={() => setIsAdding(true)}
                 >
-                    Save
+                    Add Task
                 </Button>
-            </Box>
+            )}
         </Box>
     );
 };
