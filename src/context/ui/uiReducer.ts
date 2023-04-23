@@ -2,7 +2,6 @@ import { UIState } from './UIProvider';
 
 type UIActionType = {
     type: 'UI - Open Sidebar' | 'UI - Close Sidebar';
-    payload?: any;
 };
 
 export const uiReducer = (state: UIState, action: UIActionType): UIState => {
