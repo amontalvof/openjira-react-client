@@ -11,8 +11,8 @@ interface EntryListProps {
 }
 
 const EntryList: FC<EntryListProps> = ({ status }) => {
-    const { entries } = useContext(EntriesContext);
-    const { isDragging } = useContext(UIContext);
+    const { entries, updateEntry } = useContext(EntriesContext);
+    const { isDragging, endDragging } = useContext(UIContext);
 
     const entriesByStatus = useMemo(
         () => entries.filter((entry) => entry.status === status),
@@ -21,7 +21,10 @@ const EntryList: FC<EntryListProps> = ({ status }) => {
 
     const handleOnDrop = (event: DragEvent<HTMLDivElement>) => {
         const id = event.dataTransfer.getData('text');
-        console.log(id);
+        const entry = entries.find((entry) => entry._id === id)!; //the added exclamation mark is to tell typescript that we are sure that the entry will be found
+        entry.status = status;
+        updateEntry(entry);
+        endDragging();
     };
 
     const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
