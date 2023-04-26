@@ -3,6 +3,8 @@ import { List, Paper } from '@mui/material';
 import EntryCard from './EntryCard';
 import { EntryStatus } from '../interfaces/entry';
 import { EntriesContext } from '../context/entries/EntriesContext';
+import { UIContext } from '../context/ui/UIContext';
+import styles from './EntryList.module.css';
 
 interface EntryListProps {
     status: EntryStatus;
@@ -10,6 +12,8 @@ interface EntryListProps {
 
 const EntryList: FC<EntryListProps> = ({ status }) => {
     const { entries } = useContext(EntriesContext);
+    const { isDragging } = useContext(UIContext);
+
     const entriesByStatus = useMemo(
         () => entries.filter((entry) => entry.status === status),
         [entries]
@@ -25,7 +29,11 @@ const EntryList: FC<EntryListProps> = ({ status }) => {
     };
 
     return (
-        <div onDrop={handleOnDrop} onDragOver={handleDragOver}>
+        <div
+            onDrop={handleOnDrop}
+            onDragOver={handleDragOver}
+            className={isDragging ? styles.dragging : ''}
+        >
             <Paper
                 sx={{
                     height: 'calc(100vh - 180px)',
@@ -34,7 +42,12 @@ const EntryList: FC<EntryListProps> = ({ status }) => {
                     padding: '1px 10px',
                 }}
             >
-                <List sx={{ opacity: 1 }}>
+                <List
+                    sx={{
+                        opacity: isDragging ? 0.2 : 1,
+                        transition: 'all 0.3s',
+                    }}
+                >
                     {entriesByStatus.map((entry) => (
                         <EntryCard key={entry._id} entry={entry} />
                     ))}
